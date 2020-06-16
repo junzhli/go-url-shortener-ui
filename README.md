@@ -1,7 +1,7 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# URL Shortener UI
+This frontend of [URL shortener](https://github.com/junzhli/url-shortener)
 
 ## Getting Started
-
 First, run the development server:
 
 ```bash

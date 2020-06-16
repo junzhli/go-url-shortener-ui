@@ -1,0 +1,20 @@
+.is-fullheight {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+}
+
+.table-fixed-layout {
+    table-layout: fixed;
+}
+
+.table-fixed-height {
+    height: 530px;
+    min-height: 530px;
+}
+
+.text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
