@@ -12,8 +12,6 @@ import { setLoginCookie } from "../utils/login";
 import styles from "./MainLogin.module.css";
 
 class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
-    private popupListener: Window;
-    private sendChildEvent: NodeJS.Timeout;
     constructor(props: IMainLoginProps) {
         super(props);
         this.googleSignIn = this.googleSignIn.bind(this);
@@ -55,11 +53,8 @@ class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
     }
 
     googleSignIn(event: any) {
-        this.popupListener = window.open(process.env["NEXT_PUBLIC_BASE_URL"] + "/api/user/sign/google");
-        this.popupListener.addEventListener("message", this.receiveMessage, false);
-        this.sendChildEvent = setInterval(() => {
-            this.popupListener.postMessage("getAccessToken", process.env["NEXT_PUBLIC_BASE_URL"]);
-        }, 1000);
+        window.open(process.env["NEXT_PUBLIC_BASE_URL"] + "/api/user/sign/google");
+        window.addEventListener("message", this.receiveMessage, false);
     }
 
     receiveMessage(event) {
@@ -72,9 +67,8 @@ class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
 
         if (event.data.accessToken !== undefined) {
             const accessToken = event.data.accessToken;
-            event.source.postMessage("closeWindow", event.origin);
-            this.popupListener.removeEventListener("message", this.receiveMessage, false);
-            clearInterval(this.sendChildEvent);
+            window.removeEventListener("message", this.receiveMessage, false);
+
             setLoginCookie(accessToken);
             this.props.setUserIsLoggedIn(true);
         }

@@ -8,7 +8,7 @@ import { setUserIsLoggedIn } from "../actions/user";
 import { connect } from "react-redux";
 import { withRouter } from "next/router";
 import AccountButton from "./AccountButton";
-import { isUserLogin, removeUserAccessToken, getUserAccessToken } from "../utils/login";
+import { removeUserAccessToken, getUserAccessToken } from "../utils/login";
 import { shortenUrl, UnauthorizedError } from "../utils/api";
 
 class MainBanner extends React.Component<IMainBannerProps, IMainBannerStates> {
@@ -84,10 +84,8 @@ class MainBanner extends React.Component<IMainBannerProps, IMainBannerStates> {
     }
 
     componentDidMount() {
-        if (isUserLogin()) {
-            this.props.setUserIsLoggedIn(true);
-        } else {
-            this.props.setUserIsLoggedIn(false);
+        if (!this.props.userLoggedIn) {
+            removeUserAccessToken();
         }
 
         window.addEventListener("resize", this.resize.bind(this));

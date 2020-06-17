@@ -5,7 +5,7 @@ const cookies = new Cookies();
 const userLoginCookieOptions: CookieSetOptions = {
     path: "/",
     expires: new Date((new Date()).setTime((new Date()).getTime() + (1000 * 60 * 60 * 24 * 1))),
-    domain: "." + process.env["NEXT_PUBLIC_DOMAIN"],
+    domain: process.env["NEXT_PUBLIC_DOMAIN"],
     secure: false,
     sameSite: "strict"
 };
