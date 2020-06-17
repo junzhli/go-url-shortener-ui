@@ -30,7 +30,7 @@ class MainSignUp extends React.Component<IMainSignUpProps, IMainSignUpStates> {
     async localSignUp(event: any) {
         event.preventDefault();
         try {
-            const response = await axios.post(process.env["NEXT_PUBLIC_"] + "/api/user/signup", {
+            const response = await axios.post(process.env["NEXT_PUBLIC_BASE_URL"] + "/api/user/signup", {
                 "email": this.state.userEmail,
                 "password": this.state.userPassword,
             });
