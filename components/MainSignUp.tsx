@@ -84,7 +84,6 @@ class MainSignUp extends React.Component<IMainSignUpProps, IMainSignUpStates> {
 
             setLoginCookie(accessToken);
             this.props.setUserIsLoggedIn(true);
-            this.props.router.push("/dashboard");
         }
     }
 

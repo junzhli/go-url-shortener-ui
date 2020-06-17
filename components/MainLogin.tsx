@@ -13,6 +13,7 @@ import styles from "./MainLogin.module.css";
 
 class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
     private popupListener: Window;
+    private sendChildEvent: NodeJS.Timeout;
     constructor(props: IMainLoginProps) {
         super(props);
         this.googleSignIn = this.googleSignIn.bind(this);
@@ -56,6 +57,9 @@ class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
     googleSignIn(event: any) {
         this.popupListener = window.open(process.env["NEXT_PUBLIC_BASE_URL"] + "/api/user/sign/google");
         this.popupListener.addEventListener("message", this.receiveMessage, false);
+        this.sendChildEvent = setInterval(() => {
+            this.popupListener.postMessage("getAccessToken", process.env["NEXT_PUBLIC_BASE_URL"]);
+        }, 1000);
     }
 
     receiveMessage(event) {
@@ -70,6 +74,7 @@ class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
             const accessToken = event.data.accessToken;
             event.source.postMessage("closeWindow", event.origin);
             this.popupListener.removeEventListener("message", this.receiveMessage, false);
+            clearInterval(this.sendChildEvent);
             setLoginCookie(accessToken);
             this.props.setUserIsLoggedIn(true);
         }
