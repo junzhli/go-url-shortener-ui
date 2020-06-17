@@ -12,6 +12,7 @@ class MainLayout extends React.Component<{}, any> {
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
                     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                    <meta name="google-site-verification" content="3dqKi_d2RLPOHQTSn2yMATcPlo63HCAkfGZrwnFkGpE" />
                     <script async={true} defer={true} src="https://buttons.github.io/buttons.js" />
                 </Head>
                 <main>
