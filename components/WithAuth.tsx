@@ -14,7 +14,9 @@ const withAuth = (WrappedComponent: any) => {
 
 export const getServerSideProps: GetServerSideProps<IWithAuthGetServerSideProps> = async (context) => {
     const accessToken = cookies(context).accessToken;
-    const authenticated = await userAuthenticated(process.env["NEXT_PUBLIC_BASE_URL"], accessToken);
+    const authenticated = (accessToken !== undefined) ?
+        await userAuthenticated(process.env["NEXT_PUBLIC_BASE_URL"], accessToken) :
+        false;
 
     return {
       props: {
