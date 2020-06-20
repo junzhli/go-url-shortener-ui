@@ -1,3 +1,7 @@
 .full-height {
     min-height: 80vh;
 }
+
+.password-text {
+    margin-left: 5px;
+}

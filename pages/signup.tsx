@@ -4,14 +4,32 @@ import MainSignUp from '../components/MainSignUp';
 import { GetServerSideProps } from 'next';
 import { redirectToDashboard } from '../components/WithAuth';
 import { getServerSideProps as getServerSidePropsWithAuth } from '../components/WithAuth';
-import { ISignUpPageNextGetServerSideProps } from '../types/SignUpPage';
+import { ISignUpPageNextGetServerSideProps, ISignUpPageProps, ISignUpPageStates } from '../types/SignUpPage';
+import MainSignUpCompletion from '../components/MainSignUpCompletion';
 
 
-class SignUp extends React.Component<{}, any> {
+class SignUp extends React.Component<ISignUpPageProps, ISignUpPageStates> {
+  constructor(props) {
+    super(props);
+    this.completionToggle = this.completionToggle.bind(this);
+    this.state = {
+      completion: false,
+    };
+  }
+
+  completionToggle(userEmail?: string) {
+    this.setState({
+      userEmail,
+      completion: (typeof userEmail === "undefined") ? false : true,
+    });
+  }
+
   render() {
     return (
         <MainLayout>
-            <MainSignUp />
+          {!this.state.completion
+           ? <MainSignUp completionToggle={this.completionToggle} />
+           : <MainSignUpCompletion userEmail={this.state.userEmail} completionToggle={this.completionToggle} />}
         </MainLayout>
     );
   }

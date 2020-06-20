@@ -20,7 +20,8 @@ export namespace ISignUpPage {
 export type ISignUpPageProps = WithRouterProps & ISignUpPage.IInnerProps & ISignUpPage.IStateFromProps & ISignUpPage.IPropsFromDispatch;
 
 export interface ISignUpPageStates {
-    // isLoaded: boolean;
+    completion: boolean;
+    userEmail?: string;
 }
 
 export type ISignUpPageNextGetServerSideProps = IWithAuthProps & ISignUpPage.INextGetServerSideInnerProps;

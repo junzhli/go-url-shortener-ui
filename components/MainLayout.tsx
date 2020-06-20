@@ -25,7 +25,8 @@ class MainLayout extends React.Component<{}, any> {
                 <footer className={`${styles.footer} footer`}>
                     <div className="content has-text-centered">
                         <p>
-                        <a className="github-button" href="https://github.com/junzhli/url-shortener" data-icon="octicon-star" aria-label="Star junzhli/url-shortener on GitHub">Star</a>&nbsp;&nbsp;<strong>sh.it</strong> by <a href="https://github.com/junzhli">Jeremy Li</a>. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.&nbsp;&nbsp;
+                        <a className="github-button" href="https://github.com/junzhli/url-shortener" data-icon="octicon-star" aria-label="Star junzhli/url-shortener on GitHub">Star</a>&nbsp;&nbsp;
+                        <strong>sh.it</strong> by <a href="https://github.com/junzhli">Jeremy Li</a>. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.&nbsp;&nbsp;
                         </p>
                     </div>
                 </footer>

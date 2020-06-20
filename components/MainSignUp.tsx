@@ -1,6 +1,6 @@
 import React, { Dispatch } from "react";
 import GoogleSignButton from "./GoogleSignButton";
-import { IMainLoginProps, IMainLogin } from "./types/MainLogin";
+import { IMainLogin } from "./types/MainLogin";
 import { StoreState } from "../store/types";
 import { UserActionType } from "../actions/types/user";
 import { setUserIsLoggedIn } from "../actions/user";
@@ -13,17 +13,33 @@ import { setLoginCookie } from "../utils/login";
 import styles from "./MainSignUp.module.css";
 
 class MainSignUp extends React.Component<IMainSignUpProps, IMainSignUpStates> {
-    constructor(props: IMainLoginProps) {
+    constructor(props: IMainSignUpProps) {
         super(props);
         this.googleSignUp = this.googleSignUp.bind(this);
         this.receiveMessage = this.receiveMessage.bind(this);
         this.handleInputOnChange = this.handleInputOnChange.bind(this);
         this.localSignUp = this.localSignUp.bind(this);
+        this.showPasswordToggle = this.showPasswordToggle.bind(this);
         this.state = {
+            showPassword: false,
             userEmail: "",
             userPassword: "",
             localSignUpIsSuccessfull: false,
             localSignUpErrMessage: "",
+        };
+    }
+
+    showPasswordToggle(element: "input" | "label") {
+        return (event) => {
+            if (element === "label") {
+                event.stopPropagation();
+                event.preventDefault();
+            } else if (element === "input") {
+                event.stopPropagation();
+            }
+            this.setState({
+                showPassword: !this.state.showPassword
+            });
         };
     }
 
@@ -42,9 +58,7 @@ class MainSignUp extends React.Component<IMainSignUpProps, IMainSignUpStates> {
                 this.setState({ localSignUpErrMessage: "" });
             }
 
-            this.setState({ localSignUpIsSuccessfull: true });
-            this.forceUpdate();
-            this.props.router.push("/login");
+            this.props.completionToggle(this.state.userEmail);
         } catch (error) {
             console.log("signUp error");
             console.log(error);
@@ -118,8 +132,14 @@ class MainSignUp extends React.Component<IMainSignUpProps, IMainSignUpStates> {
                             </div>
                             <div className="field">
                                 <div className="control">
-                                    <input className="input is-medium is-rounded" value={this.state.userPassword} onChange={this.handleInputOnChange("userPassword")} type="password" placeholder="**********" autoComplete="current-password" required={true} />
+                                    <input className="input is-medium is-rounded" value={this.state.userPassword} onChange={this.handleInputOnChange("userPassword")} type={this.state.showPassword ? "text" : "password"} placeholder="**********" autoComplete="current-password" required={true} />
                                 </div>
+                            </div>
+                            <div className="field">
+                                <label className="checkbox" onClick={this.showPasswordToggle("label")}>
+                                    <input type="checkbox" onClick={this.showPasswordToggle("input")} checked={this.state.showPassword} />
+                                    <span className={`${styles["password-text"]}`}>Show password</span>
+                                </label>
                             </div>
                             {
                                 this.state.localSignUpErrMessage !== "" && <p className="help is-danger">{this.state.localSignUpErrMessage}</p>
@@ -158,7 +178,7 @@ const mapDispatchToProps = (dispatch: Dispatch<UserActionType>, ownProps: IMainL
     };
 };
 
-export default withRouter(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(MainSignUp));
+)(withRouter(MainSignUp));

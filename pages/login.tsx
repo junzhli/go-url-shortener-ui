@@ -2,7 +2,7 @@ import React, { Dispatch } from 'react';
 import MainLayout from '../components/MainLayout';
 import MainLogin from '../components/MainLogin';
 import { StoreState } from '../store/types';
-import { IMainLogin, IMainLoginProps, IMainLoginStates } from '../components/types/MainLogin';
+import { IMainLogin } from '../components/types/MainLogin';
 import { UserActionType } from '../actions/types/user';
 import { setUserIsLoggedIn } from '../actions/user';
 import { withRouter } from 'next/router';
@@ -10,10 +10,10 @@ import { connect } from 'react-redux';
 import { GetServerSideProps } from 'next';
 import { redirectToDashboard } from '../components/WithAuth';
 import { getServerSideProps as getServerSidePropsWithAuth } from '../components/WithAuth';
-import { ILoginPageNextGetServerSideProps } from '../types/LoginPage';
+import { ILoginPageNextGetServerSideProps, ILoginPageProps, ILoginPageStates } from '../types/LoginPage';
 
 
-class Login extends React.Component<IMainLoginProps, IMainLoginStates> {
+class Login extends React.Component<ILoginPageProps, ILoginPageStates> {
   constructor(props) {
     super(props);
   }
