@@ -48,8 +48,8 @@
           border-radius: 3px;
           
           &:focus {
-            border-color: purple;
-            box-shadow: 0 0 5px purple inset;
+            border-color: rgb(21, 84, 155);
+            box-shadow: 0 0 5px rgb(21, 84, 155) inset;
           }
           
           &::selection {
@@ -61,7 +61,7 @@
           margin:  30px 0 50px;
           width: 100%;
           padding: 6px;
-          background-color: #B85FC6;
+          background-color: #3298dc;
           border: none;
           text-transform: uppercase;
         }

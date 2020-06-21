@@ -17,7 +17,23 @@ class SignUp extends React.Component<ISignUpPageProps, ISignUpPageStates> {
     };
   }
 
+  componentDidUpdate(preProps: ISignUpPageProps, preStates: ISignUpPageStates) {
+    // user press back button on browser to back to initial state
+    if (preStates.completion && this.state.completion) {
+      if (typeof window !== "undefined" && window.location.hash !== "complete") {
+        this.setState({
+          userEmail: undefined,
+          completion: false,
+        });
+      }
+    }
+  }
+
   completionToggle(userEmail?: string) {
+    if (typeof window !== "undefined" && typeof userEmail !== "undefined") {
+      window.location.hash = "complete";
+    }
+
     this.setState({
       userEmail,
       completion: (typeof userEmail === "undefined") ? false : true,

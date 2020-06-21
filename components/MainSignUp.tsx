@@ -145,7 +145,7 @@ class MainSignUp extends React.Component<IMainSignUpProps, IMainSignUpStates> {
                                 this.state.localSignUpErrMessage !== "" && <p className="help is-danger">{this.state.localSignUpErrMessage}</p>
                             }
                             <br />
-                            <button className="button is-block is-fullwidth is-success is-medium is-rounded" type="submit">
+                            <button className="button is-block is-fullwidth is-info is-medium is-rounded" type="submit">
                             Sign up with Email
                             </button>
                         </form>

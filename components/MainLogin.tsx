@@ -116,7 +116,7 @@ class MainLogin extends React.Component<IMainLoginProps, IMainLoginStates> {
                                     this.state.localSignInErrMessage !== "" && <p className="help is-danger">{this.state.localSignInErrMessage}</p>
                                 }
                                 <br />
-                                <button className="button is-block is-fullwidth is-primary is-medium is-rounded" type="submit">
+                                <button className="button is-block is-fullwidth is-info is-medium is-rounded" type="submit">
                                 Login with Email
                                 </button>
                             </form>
