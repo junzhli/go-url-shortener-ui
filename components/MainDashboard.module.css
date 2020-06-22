@@ -9,8 +9,14 @@
     table-layout: fixed;
 }
 
+@media screen and (max-width: 768px) {
+    .table-fixed-height {
+        min-height: 800px;
+        margin: 5px;
+    }
+}
+
 .table-fixed-height {
-    height: 530px;
     min-height: 530px;
 }
 
