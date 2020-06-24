@@ -27,13 +27,17 @@ export const getServerSideProps: GetServerSideProps<IWithAuthGetServerSideProps>
 };
 
 export const redirectToLogin = (context: GetServerSidePropsContext) => {
-    context.res.setHeader("Location", process.env["NEXT_PUBLIC_BASE_URL"] + "/login");
-    context.res.statusCode = 302;
+    context.res.writeHead(302, {
+        Location: process.env["NEXT_PUBLIC_BASE_URL"] + "/login"
+    });
+    context.res.end();
 };
 
 export const redirectToDashboard = (context: GetServerSidePropsContext) => {
-    context.res.setHeader("Location", process.env["NEXT_PUBLIC_BASE_URL"] + "/dashboard");
-    context.res.statusCode = 302;
+    context.res.writeHead(302, {
+        Location: process.env["NEXT_PUBLIC_BASE_URL"] + "/dashboard"
+    });
+    context.res.end();
 };
 
 export default withAuth;
