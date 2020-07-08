@@ -39,8 +39,7 @@ class MainSignUpCompletion extends React.Component<IMainSignUpCompletionProps, I
 
     handleKeyDown(event) {
         const key = event.which;
-
-        if (key === 8 || key === 9 || (key >= 48 && key <= 57)) {
+        if (key === 8 || key === 9 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
             return true;
         }
 
@@ -51,7 +50,7 @@ class MainSignUpCompletion extends React.Component<IMainSignUpCompletionProps, I
     handleKeyUp(index) {
         return (event) => {
             const key = event.which;
-            if (key === 8 || key === 9 || (key >= 48 && key <= 57)) {
+            if (key === 8 || key === 9 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105)) {
                 if (key === 8) {
                     this.onSubmitEditing(index, null, true);
                 }
