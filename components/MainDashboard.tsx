@@ -53,12 +53,13 @@ class MainDashboard extends React.Component<IMainDashboardProps, IMainDashboardS
                                     <tr>
                                         <th><abbr title="Origin">Origin URL</abbr></th>
                                         <th><abbr title="Shorten">Shorten URL</abbr></th>
+                                        <th><abbr title="Options">Hits</abbr></th>
                                         <th><abbr title="Options">Options</abbr></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        this.props.urlsMapping.map(({oriUrl, shortenUrl}) => {
+                                        this.props.urlsMapping.map(({oriUrl, shortenUrl, hits}) => {
                                             return (
                                                 <tr key={shortenUrl}>
                                                     <td className={`${styles["text-overflow-ellipsis"]}`}>{oriUrl}</td>
@@ -72,6 +73,7 @@ class MainDashboard extends React.Component<IMainDashboardProps, IMainDashboardS
                                                             />
                                                         </button>
                                                     </td>
+                                                    <td>{hits}</td>
                                                     <td>
                                                         <button className="button is-small is-danger is-rounded" onClick={this.handleDeletionOnClick.bind(null, shortenUrl)}>
                                                             <span className="margin-right mr-1">Delete</span>

@@ -48,10 +48,11 @@ export const getServerSideProps: GetServerSideProps<IDashboardNextGetServerSideP
       limit,
     });
     totalPage = Math.ceil(total / limit);
-    const urlsMapping: URLMapping[] = urls.map(({origin_url, shorten_url}) => {
+    const urlsMapping: URLMapping[] = urls.map(({origin_url, shorten_url, hits}) => {
       return {
         oriUrl: origin_url,
         shortenUrl: shorten_url,
+        hits,
       };
     });
 

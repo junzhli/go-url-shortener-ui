@@ -5,6 +5,7 @@ import { AdditionalAppProps } from "./_app";
 export interface URLMapping {
     oriUrl: string;
     shortenUrl: string;
+    hits: number;
 }
 
 export namespace IDashboardPage {
