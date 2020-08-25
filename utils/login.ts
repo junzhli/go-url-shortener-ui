@@ -7,7 +7,7 @@ const userLoginCookieOptions: CookieSetOptions = {
     expires: new Date((new Date()).setTime((new Date()).getTime() + (1000 * 60 * 60 * 24 * 1))),
     domain: process.env["NEXT_PUBLIC_DOMAIN"],
     secure: (process.env["NEXT_PUBLIC_USE_HTTPS"] === "true"),
-    sameSite: "strict"
+    sameSite: "lax"
 };
 
 export const setLoginCookie = (accessToken: string) => {
